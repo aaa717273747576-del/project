@@ -1,0 +1,13 @@
+name: Google Ping Check
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  ping-google:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Google
+        run: ping -c 4 google.com
