@@ -1,13 +1,15 @@
-name: Google Ping Check
+name: Internet Test
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
-  ping-google:
+  internet:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping Google
-        run: ping -c 4 google.com
+      - name: Show IP
+        run: curl ifconfig.me
+
+      - name: Connect to Google
+        run: curl -I https://google.com
