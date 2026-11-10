@@ -23,6 +23,6 @@ jobs:
           sshpass -e ssh \
             -o StrictHostKeyChecking=accept-new \
             -p 22 \
-            YOUR_USERNAME@YOUR_SERVER_IP \
+            root@192.168.56.35 \
             "whoami && hostname && uptime"
             
