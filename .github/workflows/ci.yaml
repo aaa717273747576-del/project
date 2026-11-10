@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD
 
 on:
   push:
@@ -7,17 +7,22 @@ on:
     branches: [ "master", "main" ]
 
 jobs:
-  build-and-test:
+  connect:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Environment
-        run: echo "Gurşaw taýýarlanylýar..."
-
-      - name: Run Tests / Build
+      - name: Install sshpass
         run: |
-          echo "Testler barlanylýar..."
-          echo "Üstünlikli tamamlandy!"
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+        
+      - name: Connect to VPS
+        run: |
+          export SSHPASS='Salam@123'
+
+          sshpass -e ssh \
+            -o StrictHostKeyChecking=accept-new \
+            -p 22 \
+            YOUR_USERNAME@YOUR_SERVER_IP \
+            "whoami && hostname && uptime"
+            
